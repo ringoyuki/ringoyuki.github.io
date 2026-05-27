@@ -285,6 +285,18 @@ footer{
   border-top:1px solid #171717;
   font-family:'Cinzel',serif;
 }
+
+.category-bar{
+  display:flex;gap:0.8rem;padding:0.8rem 1.4rem;overflow-x:auto;
+  border-bottom:1px solid #1a1a1a;
+}
+.category-bar::-webkit-scrollbar{display:none;}
+.cat-btn{
+  background:transparent;border:1px solid #333;color:#888;
+  padding:0.5rem 1.2rem;border-radius:20px;font-family:'Noto Serif JP',serif;
+  font-size:0.75rem;cursor:pointer;white-space:nowrap;transition:all 0.2s;
+}
+.cat-btn.active{background:#c9a84c;color:#111;border-color:#c9a84c;font-weight:bold;}
 </style>
 </head>
 <body>
@@ -310,6 +322,7 @@ footer{
   </header>
 
   <div id="index-view">
+    <div class="category-bar"><button class="cat-btn active" onclick="filterCat('すべて')">すべて</button><button class="cat-btn" onclick="filterCat('リング')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット')">ブレスレット</button><button class="cat-btn" onclick="filterCat('その他')">その他</button></div>
     <div class="item-list">
       
     <div class="item-row" id="row-1">
@@ -1554,6 +1567,51 @@ const ITEMS = [
   {idx:19,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895'}
 ];
 const SHOW_URL_LINK = false;
+const CAT_KEYS = {
+  'リング': 'リング, 指輪, ring, カレッジ, シグネット',
+  'ブレスレット': 'ブレス, バングル, bracelet, bangle',
+  '時計': '時計, ウォッチ, watch, セイコー, seiko, オメガ, ロレックス, カルティエ'
+};
+
+function getCategory(title, mng) {
+  // 1. 管理番号による判定 (優先)
+  // 例: 507_0526 から 507 を抽出
+  const mngMatch = mng.match(/(?:^|\D)(\d{3,4})_\d+/);
+  if (mngMatch) {
+    const num = parseInt(mngMatch[1], 10);
+    if (num >= 900 && num <= 999) return 'ブレスレット';
+    if (num >= 2000 && num <= 2999) return '時計';
+  }
+
+  // 2. キーワードによる判定 (管理番号で判定できなかった場合)
+  const text = (title + " " + mng).toLowerCase();
+  const cats = ['リング', 'ブレスレット', '時計'];
+  for (let c of cats) {
+    if (!CAT_KEYS[c]) continue;
+    const words = CAT_KEYS[c].split(',').map(w => w.trim().toLowerCase()).filter(w => w);
+    for (let w of words) {
+      if (text.includes(w)) return c;
+    }
+  }
+  return 'その他';
+}
+
+function filterCat(cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.trim() === cat);
+  });
+  ITEMS.forEach(item => {
+    const itemCat = getCategory(item.title, item.mng);
+    const row = document.getElementById('row-' + item.idx);
+    if (row) {
+      if (cat === 'すべて' || itemCat === cat) {
+        row.style.display = 'flex';
+      } else {
+        row.style.display = 'none';
+      }
+    }
+  });
+}
 
 document.getElementById('pw-input').addEventListener('input', function() {
   this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
