@@ -117,6 +117,12 @@ body{background:#111;color:#e8e0d0;font-family:'Noto Serif JP',serif;min-height:
   font-size:.56rem;letter-spacing:.28em;color:#c9a84c;display:block;margin-bottom:.32rem;
   font-family:'Cinzel',serif;font-variant-numeric: lining-nums tabular-nums;
 }
+.mng-no-block{display:flex;align-items:center;gap:0.8rem;margin-top:0.6rem;}
+.mng-no-wrap{flex:1;}
+.mng-no{font-size:.85rem;color:#d0d0d0;letter-spacing:.12em;line-height:1.5;}
+.copy-mng-btn{background:transparent;border:1px solid #444;color:#999;padding:0.3rem 0.6rem;font-size:.65rem;border-radius:4px;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+.copy-mng-btn:hover{border-color:#c9a84c;color:#c9a84c;}
+.copy-mng-btn.copied{background:#c9a84c;color:#111;border-color:#c9a84c;}
 .card-title{
   font-family:'Noto Serif JP',serif;
   font-size:1.4rem;font-weight:400;color:#f0e8d8;line-height:1.45;margin-bottom:.4rem;
@@ -1638,6 +1644,36 @@ const CAT_KEYS = {
   'ブレスレット': 'ブレス, バングル, bracelet, bangle',
   '時計': '時計, ウォッチ, watch, セイコー, seiko, オメガ, ロレックス, カルティエ'
 };
+
+function copyMng(text, btn) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      const oldText = btn.textContent;
+      btn.textContent = 'コピー完了';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = oldText;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  } else {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      const oldText = btn.textContent;
+      btn.textContent = 'コピー完了';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = oldText;
+        btn.classList.remove('copied');
+      }, 2000);
+    } catch (err) {}
+    document.body.removeChild(textArea);
+  }
+}
 
 function getCategory(title, mng) {
   // 1. 管理番号による判定 (優先)
