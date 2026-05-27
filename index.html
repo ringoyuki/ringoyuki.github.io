@@ -297,6 +297,11 @@ footer{
   font-size:0.75rem;cursor:pointer;white-space:nowrap;transition:all 0.2s;
 }
 .cat-btn.active{background:#c9a84c;color:#111;border-color:#c9a84c;font-weight:bold;}
+.top-tabs{display:flex;background:#0d0d0d;border-bottom:1px solid #1e1e1e;}
+.top-tab-btn{flex:1;padding:1rem;background:transparent;border:none;color:#666;font-family:'Noto Serif JP',serif;font-size:0.85rem;letter-spacing:0.15em;cursor:pointer;transition:color 0.2s, background 0.2s;border-bottom:2px solid transparent;}
+.top-tab-btn.active{color:#c9a84c;border-bottom-color:#c9a84c;background:#141414;}
+.category-bar{display:none;}
+.category-bar.active{display:flex;}
 </style>
 </head>
 <body>
@@ -321,11 +326,15 @@ footer{
     <p class="item-count">19 ITEMS</p>
   </header>
 
+  <div class="top-tabs">
+    <button class="top-tab-btn active" onclick="switchTab('private')">一般公開前</button>
+    <button class="top-tab-btn" onclick="switchTab('shops')">SHOPS販売中</button>
+  </div>
   <div id="index-view">
-    <div class="category-bar"><button class="cat-btn active" onclick="filterCat('すべて')">すべて</button><button class="cat-btn" onclick="filterCat('リング')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット')">ブレスレット</button><button class="cat-btn" onclick="filterCat('その他')">その他</button></div>
+    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'private')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'shops')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div>
     <div class="item-list">
       
-    <div class="item-row" id="row-1">
+    <div class="item-row tab-private" id="row-1">
       <div class="item-row-main" onclick="showDetail(1)">
         <div class="item-thumb"><img src="images/1_1.jpg" alt=""></div>
         <div class="item-info">
@@ -340,7 +349,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-2">
+    <div class="item-row tab-private" id="row-2">
       <div class="item-row-main" onclick="showDetail(2)">
         <div class="item-thumb"><img src="images/2_1.jpg" alt=""></div>
         <div class="item-info">
@@ -355,7 +364,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-3">
+    <div class="item-row tab-private" id="row-3">
       <div class="item-row-main" onclick="showDetail(3)">
         <div class="item-thumb"><img src="images/3_1.jpg" alt=""></div>
         <div class="item-info">
@@ -370,7 +379,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-4">
+    <div class="item-row tab-private" id="row-4">
       <div class="item-row-main" onclick="showDetail(4)">
         <div class="item-thumb"><img src="images/4_1.jpg" alt=""></div>
         <div class="item-info">
@@ -385,7 +394,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-5">
+    <div class="item-row tab-private" id="row-5">
       <div class="item-row-main" onclick="showDetail(5)">
         <div class="item-thumb"><img src="images/5_1.jpg" alt=""></div>
         <div class="item-info">
@@ -400,7 +409,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-6">
+    <div class="item-row tab-private" id="row-6">
       <div class="item-row-main" onclick="showDetail(6)">
         <div class="item-thumb"><img src="images/6_1.jpg" alt=""></div>
         <div class="item-info">
@@ -415,7 +424,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-7">
+    <div class="item-row tab-private" id="row-7">
       <div class="item-row-main" onclick="showDetail(7)">
         <div class="item-thumb"><img src="images/7_1.jpg" alt=""></div>
         <div class="item-info">
@@ -430,7 +439,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-8">
+    <div class="item-row tab-private" id="row-8">
       <div class="item-row-main" onclick="showDetail(8)">
         <div class="item-thumb"><img src="images/8_1.jpg" alt=""></div>
         <div class="item-info">
@@ -445,7 +454,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-9">
+    <div class="item-row tab-private" id="row-9">
       <div class="item-row-main" onclick="showDetail(9)">
         <div class="item-thumb"><img src="images/9_1.jpg" alt=""></div>
         <div class="item-info">
@@ -460,7 +469,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-10">
+    <div class="item-row tab-private" id="row-10">
       <div class="item-row-main" onclick="showDetail(10)">
         <div class="item-thumb"><img src="images/10_1.jpg" alt=""></div>
         <div class="item-info">
@@ -475,7 +484,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-11">
+    <div class="item-row tab-private" id="row-11">
       <div class="item-row-main" onclick="showDetail(11)">
         <div class="item-thumb"><img src="images/11_1.jpg" alt=""></div>
         <div class="item-info">
@@ -490,7 +499,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-12">
+    <div class="item-row tab-private" id="row-12">
       <div class="item-row-main" onclick="showDetail(12)">
         <div class="item-thumb"><img src="images/12_1.jpg" alt=""></div>
         <div class="item-info">
@@ -505,7 +514,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-13">
+    <div class="item-row tab-private" id="row-13">
       <div class="item-row-main" onclick="showDetail(13)">
         <div class="item-thumb"><img src="images/13_1.jpg" alt=""></div>
         <div class="item-info">
@@ -520,7 +529,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-14">
+    <div class="item-row tab-private" id="row-14">
       <div class="item-row-main" onclick="showDetail(14)">
         <div class="item-thumb"><img src="images/14_1.jpg" alt=""></div>
         <div class="item-info">
@@ -535,7 +544,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-15">
+    <div class="item-row tab-private" id="row-15">
       <div class="item-row-main" onclick="showDetail(15)">
         <div class="item-thumb"><img src="images/15_1.jpg" alt=""></div>
         <div class="item-info">
@@ -550,7 +559,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-16">
+    <div class="item-row tab-private" id="row-16">
       <div class="item-row-main" onclick="showDetail(16)">
         <div class="item-thumb"><img src="images/16_1.jpg" alt=""></div>
         <div class="item-info">
@@ -565,7 +574,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-17">
+    <div class="item-row tab-private" id="row-17">
       <div class="item-row-main" onclick="showDetail(17)">
         <div class="item-thumb"><img src="images/17_1.jpg" alt=""></div>
         <div class="item-info">
@@ -580,7 +589,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-18">
+    <div class="item-row tab-private" id="row-18">
       <div class="item-row-main" onclick="showDetail(18)">
         <div class="item-thumb"><img src="images/18_1.jpg" alt=""></div>
         <div class="item-info">
@@ -595,7 +604,7 @@ footer{
         <span class="cart-icon"></span>
       </button>
     </div>
-    <div class="item-row" id="row-19">
+    <div class="item-row tab-private" id="row-19">
       <div class="item-row-main" onclick="showDetail(19)">
         <div class="item-thumb"><img src="images/19_1.jpg" alt=""></div>
         <div class="item-info">
