@@ -357,7 +357,6 @@ footer{
   <header class="app-header">
     <p class="app-header-label" style="color:#c9a84c; font-size:0.75rem; letter-spacing:0.35em;">RINGO YUKI OFFICIAL</p>
     <h1 class="app-header-title">PRIVATE COLLECTION</h1>
-    <p class="item-count">20 ITEMS</p>
   </header>
 
   <div class="top-tabs">
@@ -651,19 +650,6 @@ footer{
         <span class="item-arrow">&#8250;</span>
       </div>
       <button class="row-cart-btn" id="row-cart-19" onclick="toggleCart(19)" title="カートに追加" >
-        <span class="cart-icon"></span>
-      </button>
-    </div>
-    <div class="item-row tab-shops" id="row-20">
-      <div class="item-row-main" onclick="showDetail(20)">
-        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;">画像なし</div></div>
-        <div class="item-info">
-          <p class="item-title-text">dummy_item</p>
-          <p class="item-price-text" id="row-price-20">価格応談</p>
-        </div>
-        <span class="item-arrow">&#8250;</span>
-      </div>
-      <button class="row-cart-btn" id="row-cart-20" onclick="toggleCart(20)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
@@ -1697,40 +1683,6 @@ footer{
       </div>
     </div>
   </div>
-  <div class="detail-view" id="detail-20">
-    <div class="detail-top-bar">
-      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-20" onclick="toggleCart(20)" >
-        <span id="detail-cart-label-20">&#9744; リストに追加</span>
-      </button>
-    </div>
-    <div class="detail-inner">
-      <div class="detail-head">
-        <span class="card-num">ITEM No.020</span>
-        
-        <h2 class="card-title">dummy_item</h2>
-        
-      </div>
-      <div class="no-img">画像なし</div>
-      <div class="card-body">
-        <div>
-          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
-            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
-            <button class="save-img-btn" onclick="downloadAllImages(20)">全画像を保存</button>
-          </div>
-          <p class="desc-text">テスト商品<br>1000</p>
-        </div>
-        
-        <div class="price-block" id="detail-price-block-20">
-          <span class="price-value" id="detail-price-value-20">価格応談</span>
-        </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-20" onclick="toggleCart(20)" >
-          <span id="detail-bottom-cart-label-20">&#9744; リストに追加</span>
-        </button>
-        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      </div>
-    </div>
-  </div>
 
   <footer>
     <p>PRIVATE PAGE</p>
@@ -1795,8 +1747,7 @@ const ITEMS = [
   {idx:16,title:'ヴィンテージ 10KGF イニシャル 「R」フリーサイズ  シグネットリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 514_0526\nD69611_802',tab:'private'},
   {idx:17,title:'ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社',retail:21800,price:16350,mng:'●管理番号 506_0526\nD68321_812',tab:'private'},
   {idx:18,title:'ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー',retail:15800,price:11850,mng:'●管理番号 901_0527\nD68949_851',tab:'private'},
-  {idx:19,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895',tab:'private'},
-  {idx:20,title:'dummy_item',retail:0,price:0,mng:'',tab:'shops'}
+  {idx:19,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895',tab:'private'}
 ];
 const SHOW_URL_LINK = false;
 const CAT_KEYS = {
@@ -2027,7 +1978,6 @@ S[16]={cur:0,total:12};
 S[17]={cur:0,total:12};
 S[18]={cur:0,total:12};
 S[19]={cur:0,total:13};
-S[20]={cur:0,total:0};
 
 function slideNav(pid, dir) {
   if (!S[pid]) return;
