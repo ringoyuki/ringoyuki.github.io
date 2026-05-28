@@ -361,8 +361,8 @@ footer{
 
   <div class="top-tabs">
     <button class="top-tab-btn active" onclick="switchTab('private')">一般公開前</button>
-    <button class="top-tab-btn" onclick="switchTab('shops')">SHOPS販売中</button>
     <button class="top-tab-btn" id="tab-btn-sold" onclick="switchTab('sold')" style="display:none;">お買い上げ実績</button>
+    <button class="top-tab-btn" onclick="switchTab('shops')">SHOPS販売中</button>
   </div>
   <div id="index-view">
     <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'private')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'shops')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div><div id="cat-bar-sold" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'sold')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'sold')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'sold')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'sold')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'sold')">その他</button></div>
@@ -575,6 +575,96 @@ footer{
         <span class="item-arrow">&#8250;</span>
       </div>
       <button class="row-cart-btn" id="row-cart-14" onclick="" title="カートに追加" style="display:none;">
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-shops" id="row-15">
+      <div class="item-row-main" onclick="showDetail(15)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/dc99870cc42a_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
+        <div class="item-info">
+          <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</p>
+          
+          <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
+          <p class="item-price-text" id="row-price-15">&yen;16,350</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-15" onclick="toggleCart(15)" title="カートに追加" >
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-shops" id="row-16">
+      <div class="item-row-main" onclick="showDetail(16)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/7d160959b6f4_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
+        <div class="item-info">
+          <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース</p>
+          
+          <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
+          <p class="item-price-text" id="row-price-16">&yen;16,350</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-16" onclick="toggleCart(16)" title="カートに追加" >
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-shops" id="row-17">
+      <div class="item-row-main" onclick="showDetail(17)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/680e8e24ba8d_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
+        <div class="item-info">
+          <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</p>
+          
+          <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
+          <p class="item-price-text" id="row-price-17">&yen;16,350</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-17" onclick="toggleCart(17)" title="カートに追加" >
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-shops" id="row-18">
+      <div class="item-row-main" onclick="showDetail(18)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/916693da33ee_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
+        <div class="item-info">
+          <p class="item-title-text">ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社</p>
+          
+          <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
+          <p class="item-price-text" id="row-price-18">&yen;16,350</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-18" onclick="toggleCart(18)" title="カートに追加" >
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-shops" id="row-19">
+      <div class="item-row-main" onclick="showDetail(19)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/39722e48df32_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
+        <div class="item-info">
+          <p class="item-title-text">ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー</p>
+          
+          <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;15,800</p>
+          <p class="item-price-text" id="row-price-19">&yen;11,850</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-19" onclick="toggleCart(19)" title="カートに追加" >
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-mercari" id="row-20">
+      <div class="item-row-main" onclick="showDetail(20)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/39722e48df32_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
+        <div class="item-info">
+          <p class="item-title-text">ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー</p>
+          
+          <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;15,800</p>
+          <p class="item-price-text" id="row-price-20">&yen;11,850</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-20" onclick="toggleCart(20)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
@@ -1338,6 +1428,330 @@ footer{
       </div>
     </div>
   </div>
+  <div class="detail-view" id="detail-15">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-15" onclick="toggleCart(15)" >
+        <span id="detail-cart-label-15">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.015</span>
+        
+        <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</h2>
+        <div class="mng-no-block">
+            <div class="mng-no-wrap"><p class="mng-no">●管理番号 505_0526</p><p class="mng-no">D68221_812</p></div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem; align-items:flex-end;">
+                <button class="copy-mng-btn" onclick="copyMng('15. ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社\n●管理番号 505_0526\nD68221_812\n  小売価格: ¥21,800\n  SPECIAL PRICE: ¥16,350\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿', this)">商品情報コピー</button>
+                <button class="copy-mng-btn" onclick="copyMng('●管理番号 505_0526\nD68221_812', this)">管理番号コピー</button>
+            </div>
+        </div>
+      </div>
+      
+    <div class="slider-wrap" id="slider-15">
+      <div class="slider-track" id="track-15"><div class="slide"><img src="images/dc99870cc42a_1.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_2.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_3.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_4.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_5.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_6.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_7.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_8.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_9.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_10.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_11.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/dc99870cc42a_12.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div></div>
+      
+        <button class="nav-btn nav-prev" onclick="slideNav(15,-1)">&#8592;</button>
+        <button class="nav-btn nav-next" onclick="slideNav(15,1)">&#8594;</button>
+        <div class="slide-counter" id="counter-15">1 / 12</div>
+    </div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(15)">全画像を保存</button>
+          </div>
+          <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「O」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約6号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br>●サイズ<br>約 6号<br>内径 約14.7mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.5g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 505_0526<br>D68221_812</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-15">
+          <div class="retail-row">
+            <span class="price-label">小売価格</span>
+            <span class="retail-value">&yen;21,800</span>
+          </div>
+          <div class="buyer-row">
+            <span class="price-label buyer-label" id="detail-price-label-15">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-15">&yen;16,350</span>
+          </div>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-15" onclick="toggleCart(15)" >
+          <span id="detail-bottom-cart-label-15">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-view" id="detail-16">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-16" onclick="toggleCart(16)" >
+        <span id="detail-cart-label-16">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.016</span>
+        
+        <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース</h2>
+        <div class="mng-no-block">
+            <div class="mng-no-wrap"><p class="mng-no">●管理番号 504_0526</p><p class="mng-no">D68121_812</p></div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem; align-items:flex-end;">
+                <button class="copy-mng-btn" onclick="copyMng('16. ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース\n●管理番号 504_0526\nD68121_812\n  小売価格: ¥21,800\n  SPECIAL PRICE: ¥16,350\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿', this)">商品情報コピー</button>
+                <button class="copy-mng-btn" onclick="copyMng('●管理番号 504_0526\nD68121_812', this)">管理番号コピー</button>
+            </div>
+        </div>
+      </div>
+      
+    <div class="slider-wrap" id="slider-16">
+      <div class="slider-track" id="track-16"><div class="slide"><img src="images/7d160959b6f4_1.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_2.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_3.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_4.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_5.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_6.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_7.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_8.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_9.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_10.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_11.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div><div class="slide"><img src="images/7d160959b6f4_12.jpg" alt="ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース" loading="lazy"></div></div>
+      
+        <button class="nav-btn nav-prev" onclick="slideNav(16,-1)">&#8592;</button>
+        <button class="nav-btn nav-next" onclick="slideNav(16,1)">&#8594;</button>
+        <div class="slide-counter" id="counter-16">1 / 12</div>
+    </div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(16)">全画像を保存</button>
+          </div>
+          <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「O」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約6号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 6号<br>内径 約14.7mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.5g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 504_0526<br>D68121_812</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-16">
+          <div class="retail-row">
+            <span class="price-label">小売価格</span>
+            <span class="retail-value">&yen;21,800</span>
+          </div>
+          <div class="buyer-row">
+            <span class="price-label buyer-label" id="detail-price-label-16">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-16">&yen;16,350</span>
+          </div>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-16" onclick="toggleCart(16)" >
+          <span id="detail-bottom-cart-label-16">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-view" id="detail-17">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-17" onclick="toggleCart(17)" >
+        <span id="detail-cart-label-17">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.017</span>
+        
+        <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</h2>
+        <div class="mng-no-block">
+            <div class="mng-no-wrap"><p class="mng-no">●管理番号 507_0526</p><p class="mng-no">D68421_812</p></div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem; align-items:flex-end;">
+                <button class="copy-mng-btn" onclick="copyMng('17. ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社\n●管理番号 507_0526\nD68421_812\n  小売価格: ¥21,800\n  SPECIAL PRICE: ¥16,350\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿', this)">商品情報コピー</button>
+                <button class="copy-mng-btn" onclick="copyMng('●管理番号 507_0526\nD68421_812', this)">管理番号コピー</button>
+            </div>
+        </div>
+      </div>
+      
+    <div class="slider-wrap" id="slider-17">
+      <div class="slider-track" id="track-17"><div class="slide"><img src="images/680e8e24ba8d_1.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_2.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_3.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_4.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_5.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_6.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_7.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_8.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_9.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_10.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_11.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div><div class="slide"><img src="images/680e8e24ba8d_12.jpg" alt="ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社" loading="lazy"></div></div>
+      
+        <button class="nav-btn nav-prev" onclick="slideNav(17,-1)">&#8592;</button>
+        <button class="nav-btn nav-next" onclick="slideNav(17,1)">&#8594;</button>
+        <div class="slide-counter" id="counter-17">1 / 12</div>
+    </div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(17)">全画像を保存</button>
+          </div>
+          <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「P」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8.5号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8.5号<br>内径 約15.4mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.4g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 507_0526<br>D68421_812</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-17">
+          <div class="retail-row">
+            <span class="price-label">小売価格</span>
+            <span class="retail-value">&yen;21,800</span>
+          </div>
+          <div class="buyer-row">
+            <span class="price-label buyer-label" id="detail-price-label-17">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-17">&yen;16,350</span>
+          </div>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-17" onclick="toggleCart(17)" >
+          <span id="detail-bottom-cart-label-17">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-view" id="detail-18">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-18" onclick="toggleCart(18)" >
+        <span id="detail-cart-label-18">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.018</span>
+        
+        <h2 class="card-title">ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社</h2>
+        <div class="mng-no-block">
+            <div class="mng-no-wrap"><p class="mng-no">●管理番号 506_0526</p><p class="mng-no">D68321_812</p></div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem; align-items:flex-end;">
+                <button class="copy-mng-btn" onclick="copyMng('18. ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社\n●管理番号 506_0526\nD68321_812\n  小売価格: ¥21,800\n  SPECIAL PRICE: ¥16,350\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿', this)">商品情報コピー</button>
+                <button class="copy-mng-btn" onclick="copyMng('●管理番号 506_0526\nD68321_812', this)">管理番号コピー</button>
+            </div>
+        </div>
+      </div>
+      
+    <div class="slider-wrap" id="slider-18">
+      <div class="slider-track" id="track-18"><div class="slide"><img src="images/916693da33ee_1.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_2.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_3.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_4.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_5.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_6.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_7.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_8.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_9.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_10.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_11.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div><div class="slide"><img src="images/916693da33ee_12.jpg" alt="ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社" loading="lazy"></div></div>
+      
+        <button class="nav-btn nav-prev" onclick="slideNav(18,-1)">&#8592;</button>
+        <button class="nav-btn nav-next" onclick="slideNav(18,1)">&#8594;</button>
+        <div class="slide-counter" id="counter-18">1 / 12</div>
+    </div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(18)">全画像を保存</button>
+          </div>
+          <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「H」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8.5号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には18K HGE（18金厚メッキ）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8.5号<br>内径 約15.5mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.4g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>18K HGE（18金厚メッキ）<br><br>●刻印<br>18KT HGE<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、18K HGEの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 506_0526<br>D68321_812</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-18">
+          <div class="retail-row">
+            <span class="price-label">小売価格</span>
+            <span class="retail-value">&yen;21,800</span>
+          </div>
+          <div class="buyer-row">
+            <span class="price-label buyer-label" id="detail-price-label-18">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-18">&yen;16,350</span>
+          </div>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-18" onclick="toggleCart(18)" >
+          <span id="detail-bottom-cart-label-18">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-view" id="detail-19">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-19" onclick="toggleCart(19)" >
+        <span id="detail-cart-label-19">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.019</span>
+        
+        <h2 class="card-title">ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー</h2>
+        <div class="mng-no-block">
+            <div class="mng-no-wrap"><p class="mng-no">●管理番号 901_0527</p><p class="mng-no">D68949_851</p></div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem; align-items:flex-end;">
+                <button class="copy-mng-btn" onclick="copyMng('19. ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー\n●管理番号 901_0527\nD68949_851\n  小売価格: ¥15,800\n  SPECIAL PRICE: ¥11,850\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿', this)">商品情報コピー</button>
+                <button class="copy-mng-btn" onclick="copyMng('●管理番号 901_0527\nD68949_851', this)">管理番号コピー</button>
+            </div>
+        </div>
+      </div>
+      
+    <div class="slider-wrap" id="slider-19">
+      <div class="slider-track" id="track-19"><div class="slide"><img src="images/39722e48df32_1.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_2.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_3.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_4.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_5.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_6.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_7.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_8.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_9.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_10.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_11.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_12.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div></div>
+      
+        <button class="nav-btn nav-prev" onclick="slideNav(19,-1)">&#8592;</button>
+        <button class="nav-btn nav-next" onclick="slideNav(19,1)">&#8594;</button>
+        <div class="slide-counter" id="counter-19">1 / 12</div>
+    </div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(19)">全画像を保存</button>
+          </div>
+          <p class="desc-text">#yukiアクセサリー<br><br>世界的な銀の産地として名高いメキシコにて製造された、ヴィンテージのバングルブレスレット。<br>表面には細やかな彫金のようなパターンが施されており、メキシカンジュエリー特有のプリミティブな力強さと繊細さが同居する洗練された意匠。<br><br>素材にはアルパカシルバーを採用。<br>スターリングシルバーとは一味違う、少し黄みがかったようなくすんだ銀色がヴィンテージの渋い色気を醸し出す。<br>内周約20.8cmとややゆとりのあるサイズ感で、単体使いはもちろん、他のブレスレットとのレイヤードでも手元に圧倒的な存在感を宿す極上ピース。<br><br>●サイズ<br>内周 約20.8cm<br>外径 約70.3mm / 内径 約65.9mm<br>バンド幅 約5.2mm<br><br>●重量<br>約 12.7g<br><br>●ブランド<br>メキシカンジュエリー<br><br>●素材<br>アルパカシルバー<br>ニッケル合金<br><br>●刻印<br>MEXICO<br>ALPACA<br><br>【コンディション】<br>長年の着用に伴う小傷やアルパカシルバー特有のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>バングルとしての致命的な歪みやダメージはなく、これからも日常使いのタフな相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 901_0527<br>D68949_851</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-19">
+          <div class="retail-row">
+            <span class="price-label">小売価格</span>
+            <span class="retail-value">&yen;15,800</span>
+          </div>
+          <div class="buyer-row">
+            <span class="price-label buyer-label" id="detail-price-label-19">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-19">&yen;11,850</span>
+          </div>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-19" onclick="toggleCart(19)" >
+          <span id="detail-bottom-cart-label-19">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-view" id="detail-20">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-20" onclick="toggleCart(20)" >
+        <span id="detail-cart-label-20">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.020</span>
+        
+        <h2 class="card-title">ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー</h2>
+        <div class="mng-no-block">
+            <div class="mng-no-wrap"><p class="mng-no">●管理番号 901_0527</p><p class="mng-no">D68949_851</p></div>
+            <div style="display:flex; flex-direction:column; gap:0.4rem; align-items:flex-end;">
+                <button class="copy-mng-btn" onclick="copyMng('20. ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー\n●管理番号 901_0527\nD68949_851\n  小売価格: ¥15,800\n  SPECIAL PRICE: ¥11,850\n＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿', this)">商品情報コピー</button>
+                <button class="copy-mng-btn" onclick="copyMng('●管理番号 901_0527\nD68949_851', this)">管理番号コピー</button>
+            </div>
+        </div>
+      </div>
+      
+    <div class="slider-wrap" id="slider-20">
+      <div class="slider-track" id="track-20"><div class="slide"><img src="images/39722e48df32_1.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_2.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_3.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_4.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_5.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_6.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_7.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_8.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_9.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_10.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_11.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div><div class="slide"><img src="images/39722e48df32_12.jpg" alt="ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー" loading="lazy"></div></div>
+      
+        <button class="nav-btn nav-prev" onclick="slideNav(20,-1)">&#8592;</button>
+        <button class="nav-btn nav-next" onclick="slideNav(20,1)">&#8594;</button>
+        <div class="slide-counter" id="counter-20">1 / 12</div>
+    </div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(20)">全画像を保存</button>
+          </div>
+          <p class="desc-text">#yukiアクセサリー<br><br>世界的な銀の産地として名高いメキシコにて製造された、ヴィンテージのバングルブレスレット。<br>表面には細やかな彫金のようなパターンが施されており、メキシカンジュエリー特有のプリミティブな力強さと繊細さが同居する洗練された意匠。<br><br>素材にはアルパカシルバーを採用。<br>スターリングシルバーとは一味違う、少し黄みがかったようなくすんだ銀色がヴィンテージの渋い色気を醸し出す。<br>内周約20.8cmとややゆとりのあるサイズ感で、単体使いはもちろん、他のブレスレットとのレイヤードでも手元に圧倒的な存在感を宿す極上ピース。<br><br>●サイズ<br>内周 約20.8cm<br>外径 約70.3mm / 内径 約65.9mm<br>バンド幅 約5.2mm<br><br>●重量<br>約 12.7g<br><br>●ブランド<br>メキシカンジュエリー<br><br>●素材<br>アルパカシルバー<br>ニッケル合金<br><br>●刻印<br>MEXICO<br>ALPACA<br><br>【コンディション】<br>長年の着用に伴う小傷やアルパカシルバー特有のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>バングルとしての致命的な歪みやダメージはなく、これからも日常使いのタフな相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 901_0527<br>D68949_851</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-20">
+          <div class="retail-row">
+            <span class="price-label">小売価格</span>
+            <span class="retail-value">&yen;15,800</span>
+          </div>
+          <div class="buyer-row">
+            <span class="price-label buyer-label" id="detail-price-label-20">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-20">&yen;11,850</span>
+          </div>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-20" onclick="toggleCart(20)" >
+          <span id="detail-bottom-cart-label-20">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <p>PRIVATE PAGE</p>
@@ -1397,7 +1811,13 @@ const ITEMS = [
   {idx:11,title:'ヴィンテージ 10KGF イニシャル 「K」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 510_0526\nD69211_802',tab:'sold'},
   {idx:12,title:'ヴィンテージ 10KGF イニシャル 「O」 8.8号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 508_0526\nD68521_812',tab:'sold'},
   {idx:13,title:'ヴィンテージ 10KGF イニシャル 「R」フリーサイズ  シグネットリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 514_0526\nD69611_802',tab:'sold'},
-  {idx:14,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895',tab:'sold'}
+  {idx:14,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895',tab:'sold'},
+  {idx:15,title:'ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 505_0526\nD68221_812',tab:'shops'},
+  {idx:16,title:'ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース',retail:21800,price:16350,mng:'●管理番号 504_0526\nD68121_812',tab:'shops'},
+  {idx:17,title:'ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 507_0526\nD68421_812',tab:'shops'},
+  {idx:18,title:'ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社',retail:21800,price:16350,mng:'●管理番号 506_0526\nD68321_812',tab:'shops'},
+  {idx:19,title:'ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー',retail:15800,price:11850,mng:'●管理番号 901_0527\nD68949_851',tab:'shops'},
+  {idx:20,title:'ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー',retail:15800,price:11850,mng:'●管理番号 901_0527\nD68949_851',tab:'mercari'}
 ];
 const SHOW_URL_LINK = false;
 const CAT_KEYS = {
@@ -1483,7 +1903,14 @@ function filterCat(cat, tabId) {
     const itemCat = getCategory(item.title, item.mng);
     const row = document.getElementById('row-' + item.idx);
     if (row) {
-      const isCorrectTab = row.classList.contains('tab-' + tabId);
+      const isNormal = (loginPw === PW);
+      let isCorrectTab = false;
+      if (tabId === 'shops') {
+        isCorrectTab = isNormal ? (item.tab === 'shops') : (item.tab === 'mercari');
+      } else {
+        isCorrectTab = (item.tab === tabId);
+      }
+      
       if (isCorrectTab) {
         if (cat === 'すべて' || itemCat === cat) {
           row.style.display = 'flex';
@@ -1623,6 +2050,12 @@ S[11]={cur:0,total:12};
 S[12]={cur:0,total:12};
 S[13]={cur:0,total:12};
 S[14]={cur:0,total:13};
+S[15]={cur:0,total:12};
+S[16]={cur:0,total:12};
+S[17]={cur:0,total:12};
+S[18]={cur:0,total:12};
+S[19]={cur:0,total:12};
+S[20]={cur:0,total:12};
 
 function slideNav(pid, dir) {
   if (!S[pid]) return;
