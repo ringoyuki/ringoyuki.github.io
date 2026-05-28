@@ -64,7 +64,7 @@ body{background:#111;color:#e8e0d0;font-family:'Noto Serif JP',serif;min-height:
   display:flex;align-items:center;gap:1rem;
   flex:1;padding:1rem 0 1rem 1.2rem;cursor:pointer;
 }
-.item-thumb{width:72px;height:72px;flex:0 0 72px;overflow:hidden;background:#0d0d0d}
+.item-thumb{width:72px;height:72px;flex:0 0 72px;overflow:hidden;background:#0d0d0d;position:relative;}
 .item-thumb img{width:100%;height:100%;object-fit:cover}
 .item-info{flex:1;min-width:0}
 .item-title-text{
@@ -308,6 +308,34 @@ footer{
 .top-tab-btn.active{color:#c9a84c;border-bottom-color:#c9a84c;background:#141414;}
 .category-bar{display:none;}
 .category-bar.active{display:flex;}
+
+/* SOLD OUT バッジ (サムネイル内) */
+.sold-badge-thumb {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(229, 85, 85, 0.9);
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  z-index: 5;
+}
+
+/* SOLD OUT バッジ (詳細画面タイトル上) */
+.sold-badge-detail {
+  display: inline-block;
+  background: #e55;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.6rem;
+}
 </style>
 </head>
 <body>
@@ -329,299 +357,313 @@ footer{
   <header class="app-header">
     <p class="app-header-label" style="color:#c9a84c; font-size:0.75rem; letter-spacing:0.35em;">RINGO YUKI OFFICIAL</p>
     <h1 class="app-header-title">PRIVATE COLLECTION</h1>
-    <p class="item-count">19 ITEMS</p>
+    <p class="item-count">20 ITEMS</p>
   </header>
 
   <div class="top-tabs">
     <button class="top-tab-btn active" onclick="switchTab('private')">一般公開前</button>
     <button class="top-tab-btn" onclick="switchTab('shops')">SHOPS販売中</button>
+    <button class="top-tab-btn" id="tab-btn-sold" onclick="switchTab('sold')" style="display:none;">お買い上げ実績</button>
   </div>
   <div id="index-view">
-    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'private')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'shops')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div>
+    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'private')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'shops')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div><div id="cat-bar-sold" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'sold')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'sold')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'sold')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'sold')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'sold')">その他</button></div>
     <div class="item-list">
       
     <div class="item-row tab-private" id="row-1">
       <div class="item-row-main" onclick="showDetail(1)">
-        <div class="item-thumb"><img src="images/1_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/1_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">14KGF 14金張り 14号 3連 スタッキングリング ヴィンテージ デッドストック ゴールドカラー 重ね付け</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;23,800</p>
-          <p class="item-price-text">&yen;17,850</p>
+          <p class="item-price-text" id="row-price-1">&yen;17,850</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-1" onclick="toggleCart(1)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-1" onclick="toggleCart(1)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-2">
       <div class="item-row-main" onclick="showDetail(2)">
-        <div class="item-thumb"><img src="images/2_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/2_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">14KGF 14金張り 17号 幾何学模様 ヴィンテージ バンドリング デッドストック ゴールドカラー シャープ</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
-          <p class="item-price-text">&yen;16,350</p>
+          <p class="item-price-text" id="row-price-2">&yen;16,350</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-2" onclick="toggleCart(2)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-2" onclick="toggleCart(2)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-3">
       <div class="item-row-main" onclick="showDetail(3)">
-        <div class="item-thumb"><img src="images/3_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/3_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">イタリア製 10K ゴールド ミラーリンク チェーン ブレスレット 17.3cm 10金 BSI 金無垢</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;24,800</p>
-          <p class="item-price-text">&yen;18,600</p>
+          <p class="item-price-text" id="row-price-3">&yen;18,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-3" onclick="toggleCart(3)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-3" onclick="toggleCart(3)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-4">
       <div class="item-row-main" onclick="showDetail(4)">
-        <div class="item-thumb"><img src="images/4_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/4_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">イタリア製 10K ゴールド ロープチェーン ブレスレット 約17cm 10金 ITALY 金無垢</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;31,800</p>
-          <p class="item-price-text">&yen;23,850</p>
+          <p class="item-price-text" id="row-price-4">&yen;23,850</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-4" onclick="toggleCart(4)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-4" onclick="toggleCart(4)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-5">
       <div class="item-row-main" onclick="showDetail(5)">
-        <div class="item-thumb"><img src="images/5_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/5_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">イタリア製 ヴィンテージ 14K ゴールド 極細 スネークチェーン ブレスレット 約17.5cm 14金 ITALY</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;26,800</p>
-          <p class="item-price-text">&yen;20,100</p>
+          <p class="item-price-text" id="row-price-5">&yen;20,100</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-5" onclick="toggleCart(5)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-5" onclick="toggleCart(5)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-6">
       <div class="item-row-main" onclick="showDetail(6)">
-        <div class="item-thumb"><img src="images/6_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/6_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「B」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-6">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-6" onclick="toggleCart(6)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-6" onclick="toggleCart(6)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-7">
       <div class="item-row-main" onclick="showDetail(7)">
-        <div class="item-thumb"><img src="images/7_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/7_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「D」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-7">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-7" onclick="toggleCart(7)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-7" onclick="toggleCart(7)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-8">
       <div class="item-row-main" onclick="showDetail(8)">
-        <div class="item-thumb"><img src="images/8_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/8_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「F」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO社</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-8">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-8" onclick="toggleCart(8)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-8" onclick="toggleCart(8)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-9">
       <div class="item-row-main" onclick="showDetail(9)">
-        <div class="item-thumb"><img src="images/9_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/9_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「H」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-9">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-9" onclick="toggleCart(9)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-9" onclick="toggleCart(9)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-10">
       <div class="item-row-main" onclick="showDetail(10)">
-        <div class="item-thumb"><img src="images/10_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/10_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「K」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-10">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-10" onclick="toggleCart(10)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-10" onclick="toggleCart(10)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-11">
       <div class="item-row-main" onclick="showDetail(11)">
-        <div class="item-thumb"><img src="images/11_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/11_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「L」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-11">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-11" onclick="toggleCart(11)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-11" onclick="toggleCart(11)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-12">
       <div class="item-row-main" onclick="showDetail(12)">
-        <div class="item-thumb"><img src="images/12_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/12_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
-          <p class="item-price-text">&yen;16,350</p>
+          <p class="item-price-text" id="row-price-12">&yen;16,350</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-12" onclick="toggleCart(12)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-12" onclick="toggleCart(12)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-13">
       <div class="item-row-main" onclick="showDetail(13)">
-        <div class="item-thumb"><img src="images/13_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/13_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
-          <p class="item-price-text">&yen;16,350</p>
+          <p class="item-price-text" id="row-price-13">&yen;16,350</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-13" onclick="toggleCart(13)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-13" onclick="toggleCart(13)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-14">
       <div class="item-row-main" onclick="showDetail(14)">
-        <div class="item-thumb"><img src="images/14_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/14_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「O」 8.8号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
-          <p class="item-price-text">&yen;16,350</p>
+          <p class="item-price-text" id="row-price-14">&yen;16,350</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-14" onclick="toggleCart(14)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-14" onclick="toggleCart(14)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-15">
       <div class="item-row-main" onclick="showDetail(15)">
-        <div class="item-thumb"><img src="images/15_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/15_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
-          <p class="item-price-text">&yen;16,350</p>
+          <p class="item-price-text" id="row-price-15">&yen;16,350</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-15" onclick="toggleCart(15)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-15" onclick="toggleCart(15)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-16">
       <div class="item-row-main" onclick="showDetail(16)">
-        <div class="item-thumb"><img src="images/16_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/16_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 10KGF イニシャル 「R」フリーサイズ  シグネットリング ゴールドカラー 10金張り ESPO エスポジト</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;20,800</p>
-          <p class="item-price-text">&yen;15,600</p>
+          <p class="item-price-text" id="row-price-16">&yen;15,600</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-16" onclick="toggleCart(16)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-16" onclick="toggleCart(16)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-17">
       <div class="item-row-main" onclick="showDetail(17)">
-        <div class="item-thumb"><img src="images/17_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/17_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;21,800</p>
-          <p class="item-price-text">&yen;16,350</p>
+          <p class="item-price-text" id="row-price-17">&yen;16,350</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-17" onclick="toggleCart(17)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-17" onclick="toggleCart(17)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-18">
       <div class="item-row-main" onclick="showDetail(18)">
-        <div class="item-thumb"><img src="images/18_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/18_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;15,800</p>
-          <p class="item-price-text">&yen;11,850</p>
+          <p class="item-price-text" id="row-price-18">&yen;11,850</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-18" onclick="toggleCart(18)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-18" onclick="toggleCart(18)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
     <div class="item-row tab-private" id="row-19">
       <div class="item-row-main" onclick="showDetail(19)">
-        <div class="item-thumb"><img src="images/19_1.jpg" alt=""></div>
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;"><img src="images/19_1.jpg" alt="" style="width:100%; height:100%; object-fit:cover;"></div></div>
         <div class="item-info">
           <p class="item-title-text">英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド</p>
           
           <p class="item-retail-text" style="font-size:0.75rem; color:#888; text-decoration:line-through; margin-bottom:0.1rem;">&yen;59,800</p>
-          <p class="item-price-text">&yen;44,850</p>
+          <p class="item-price-text" id="row-price-19">&yen;44,850</p>
         </div>
         <span class="item-arrow">&#8250;</span>
       </div>
-      <button class="row-cart-btn" id="row-cart-19" onclick="toggleCart(19)" title="カートに追加">
+      <button class="row-cart-btn" id="row-cart-19" onclick="toggleCart(19)" title="カートに追加" >
+        <span class="cart-icon"></span>
+      </button>
+    </div>
+    <div class="item-row tab-shops" id="row-20">
+      <div class="item-row-main" onclick="showDetail(20)">
+        <div class="item-thumb"><div style="position:relative; width:100%; height:100%;">画像なし</div></div>
+        <div class="item-info">
+          <p class="item-title-text">dummy_item</p>
+          <p class="item-price-text" id="row-price-20">価格応談</p>
+        </div>
+        <span class="item-arrow">&#8250;</span>
+      </div>
+      <button class="row-cart-btn" id="row-cart-20" onclick="toggleCart(20)" title="カートに追加" >
         <span class="cart-icon"></span>
       </button>
     </div>
@@ -632,13 +674,14 @@ footer{
   <div class="detail-view" id="detail-1">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-1" onclick="toggleCart(1)">
+      <button class="detail-cart-btn" id="detail-cart-1" onclick="toggleCart(1)" >
         <span id="detail-cart-label-1">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.001</span>
+        
         <h2 class="card-title">14KGF 14金張り 14号 3連 スタッキングリング ヴィンテージ デッドストック ゴールドカラー 重ね付け</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 500_0526</p><p class="mng-no">D66951_832</p></div>
@@ -665,17 +708,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>異なる表情を持つ3本のリングで構成された、ヴィンテージのスタッキング（重ね付け）リングセット。<br>中央に細やかな彫金が施されたメインリングを、プレーンで華奢な2本のリングが挟み込む洗練された意匠。<br><br>その日の気分やスタイルに合わせて、単体使いや他のリングとのレイヤードなど自由自在に組み合わせを楽しめる実用性の高さが最大の魅力。<br><br>素材には1/20 14KGF（14金張り）を採用。長年の時を経ても色褪せない美しいゴールドの輝きが、手元に上品な大人の色気を宿す汎用性抜群の極上ピース。<br><br><br>●サイズ<br>約 14号<br>内径 約17.4mm<br><br>トップ<br>大：縦約3mm × 横約20mm<br>小：縦約1mm × 横約18mm<br><br>シャンク幅<br>大：約3.0mm<br>小：約1.0mm<br><br>●重量<br>約 2.9g（3点合計）<br><br>●素材<br>14KGF（14金張り）<br><br>●刻印<br>1/20 14K GF<br><br>【コンディション】<br>着用感が非常に少なく、メッキの剥がれ等も見受けられないデッドストック級の極上コンディション。<br>ヴィンテージ特有の微細な保管傷程度はあるものの、14KGFの美しい輝きは当時のまま保たれており、これからも日常使いの相棒として長くタフに愛用できる最高の状態。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 500_0526<br>D66951_832</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-1">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;23,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;17,850</span>
+            <span class="price-label buyer-label" id="detail-price-label-1">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-1">&yen;17,850</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-1" onclick="toggleCart(1)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-1" onclick="toggleCart(1)" >
           <span id="detail-bottom-cart-label-1">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -685,13 +728,14 @@ footer{
   <div class="detail-view" id="detail-2">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-2" onclick="toggleCart(2)">
+      <button class="detail-cart-btn" id="detail-cart-2" onclick="toggleCart(2)" >
         <span id="detail-cart-label-2">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.002</span>
+        
         <h2 class="card-title">14KGF 14金張り 17号 幾何学模様 ヴィンテージ バンドリング デッドストック ゴールドカラー シャープ</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 502_0526</p><p class="mng-no">D67189_812</p></div>
@@ -718,17 +762,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>エッジの効いたシャープなフォルムに、細やかな幾何学模様が連続して彫り込まれたヴィンテージのバンドリング。<br>素材には1/20 14KGF（14金張り）を採用。<br>長年の時を経ても色褪せない上質なゴールドの輝きが、指元に洗練された大人の色気を宿す。<br>重ね付けのアクセントとしては勿論、程よい厚みと存在感があるため、これ1本でも主役級の活躍を見せる汎用性抜群の極上ピース。<br><br>●サイズ<br>約 17号<br>内径 約18.1mm<br><br>トップ 縦約3mm × 横約21mm<br>シャンク幅 約3.0mm<br><br>●重量<br>約 2.1g<br><br>●素材<br>14KGF（14金張り）<br><br>●刻印<br>1/20 14K<br><br>【コンディション】<br>着用感がほとんど見受けられない、デッドストック級の極上コンディション。<br>ヴィンテージ特有の微細な保管傷程度はあるものの、14KGFの美しいゴールドの輝きやエッジのシャープさは当時のまま保たれており、これからも日常使いの相棒として長くタフに愛用できる最高の状態。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 502_0526<br>D67189_812</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-2">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;21,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;16,350</span>
+            <span class="price-label buyer-label" id="detail-price-label-2">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-2">&yen;16,350</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-2" onclick="toggleCart(2)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-2" onclick="toggleCart(2)" >
           <span id="detail-bottom-cart-label-2">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -738,13 +782,14 @@ footer{
   <div class="detail-view" id="detail-3">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-3" onclick="toggleCart(3)">
+      <button class="detail-cart-btn" id="detail-cart-3" onclick="toggleCart(3)" >
         <span id="detail-cart-label-3">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.003</span>
+        
         <h2 class="card-title">イタリア製 10K ゴールド ミラーリンク チェーン ブレスレット 17.3cm 10金 BSI 金無垢</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 903_0527</p><p class="mng-no">D70001_842</p></div>
@@ -771,17 +816,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>平らにプレスされたコマが鏡のように光を反射する、10Kゴールドのミラーリンクチェーンブレスレット。<br>細身の約1.4mm幅でありながら、ミラーチェーン特有の面反射がキラキラと強い煌めきを放ち、手首に華やかなアクセントと大人の色気を添える。<br>留め具とエンドパーツ（四角いプレート）の2箇所に「10K」およびメーカー「BSI」の刻印がしっかりと打刻されており、約0.4gという着けていることを忘れるほどの軽快な着け心地の中に、確かな金無垢の説得力を宿す。<br>単体での着用はもちろん、時計や他のブレスレットとのレイヤードにも最適な、洗練されたデイリーピース。<br><br><br>●サイズ<br>全長（内周）約 17.3cm<br>チェーン幅 約 1.4mm<br><br>●重量<br>約 0.4g<br><br>●ブランド<br>BSI（Best Silver Inc.）<br>イタリア製・アメリカ流通<br><br>●素材<br>10K イエローゴールド<br><br>●刻印<br>BSI 10K（エンドパーツ）<br>10K（留め具）<br><br>【コンディション】<br>着用に伴う微細な小傷程度は見受けられるが、チェーンのヨレや致命的なダメージはなく、10Kゴールドの美しい輝きが保たれている極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 903_0527<br>D70001_842</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-3">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;24,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;18,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-3">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-3">&yen;18,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-3" onclick="toggleCart(3)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-3" onclick="toggleCart(3)" >
           <span id="detail-bottom-cart-label-3">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -791,13 +836,14 @@ footer{
   <div class="detail-view" id="detail-4">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-4" onclick="toggleCart(4)">
+      <button class="detail-cart-btn" id="detail-cart-4" onclick="toggleCart(4)" >
         <span id="detail-cart-label-4">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.004</span>
+        
         <h2 class="card-title">イタリア製 10K ゴールド ロープチェーン ブレスレット 約17cm 10金 ITALY 金無垢</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 902_0527</p><p class="mng-no">D69961_813</p></div>
@@ -824,17 +870,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>立体的な編み込みが美しい、ダイヤモンドカットが施された10Kゴールドのロープチェーンブレスレット。<br>細身の約1.5mm幅でありながら、ロープチェーン特有の緻密な構造とカッティングが光を複雑に反射し、手首に華やかな輝きと大人の色気を添える。<br>留め具と丸カンの2箇所に「10K」の刻印がしっかりと打刻されており、約0.5gという軽快な着け心地の中に確かな金無垢の説得力を宿す。<br>イタリアからの輸入品ですが、製品自体に生産国（ITALY等）の刻印はございません。<br><br>滅多に入荷しない希少な極上チェーン。<br>単体での着用はもちろん、時計や他のブレスレットとのレイヤードにも最適な洗練されたデイリーピースです。<br><br>●サイズ<br>全長（内周）約 17cm<br>チェーン幅 約 1.5mm<br><br>●重量<br>約 0.5g<br><br>●素材<br>10K イエローゴールド<br><br>●刻印<br>10K（留め具および丸カン）<br><br>【コンディション】<br>着用に伴う微細な小傷程度は見受けられるが、チェーンのヨレや致命的なダメージはなく、10Kゴールドの美しい輝きが保たれている極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 902_0527<br>D69961_813</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-4">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;31,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;23,850</span>
+            <span class="price-label buyer-label" id="detail-price-label-4">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-4">&yen;23,850</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-4" onclick="toggleCart(4)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-4" onclick="toggleCart(4)" >
           <span id="detail-bottom-cart-label-4">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -844,13 +890,14 @@ footer{
   <div class="detail-view" id="detail-5">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-5" onclick="toggleCart(5)">
+      <button class="detail-cart-btn" id="detail-cart-5" onclick="toggleCart(5)" >
         <span id="detail-cart-label-5">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.005</span>
+        
         <h2 class="card-title">イタリア製 ヴィンテージ 14K ゴールド 極細 スネークチェーン ブレスレット 約17.5cm 14金 ITALY</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 900_0527</p><p class="mng-no">D67401_862</p></div>
@@ -877,17 +924,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>素肌に溶け込むような極細のシルエットが美しい、ヴィンテージのスネークチェーンブレスレット。<br>つるりとした滑らかな質感のチェーンが光を繊細に反射し、手首にさりげない色気と上品なアクセントを添える。<br>素材には14Kゴールドを採用。<br>約0.3gという、着けていることを忘れるほどの驚異的な軽さと華奢さでありながら、確かなゴールドの輝きを放つ。<br>単体での着用はもちろん、時計や他のブレスレットとのレイヤードにも最適な、大人のための洗練されたデイリーピース。<br><br><br>●サイズ<br>内周 約 17.5cm<br><br>●重量<br>約 0.3g<br><br>●ブランド<br>イタリア製<br><br>●素材<br>14K ゴールド<br><br>●刻印<br>14KT<br>ITALY<br><br>【コンディション】<br>着用に伴う微細な小傷程度は見受けられるが、致命的なダメージはなく、14Kの美しい輝きが保たれている極上のコンディション。<br>※非常に華奢で繊細な造りのため、着脱時の強い引っ張りや引っかけには十分ご注意ください。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 900_0527<br>D67401_862</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-5">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;26,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;20,100</span>
+            <span class="price-label buyer-label" id="detail-price-label-5">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-5">&yen;20,100</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-5" onclick="toggleCart(5)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-5" onclick="toggleCart(5)" >
           <span id="detail-bottom-cart-label-5">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -897,13 +944,14 @@ footer{
   <div class="detail-view" id="detail-6">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-6" onclick="toggleCart(6)">
+      <button class="detail-cart-btn" id="detail-cart-6" onclick="toggleCart(6)" >
         <span id="detail-cart-label-6">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.006</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「B」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 515_0526</p><p class="mng-no">D69711_802</p></div>
@@ -930,17 +978,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>クラシカルなシールド（盾）フォルムのトップに、流麗な飾り文字で「B」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>※非常に装飾的な書体のため、見る人によっては別の文字や抽象的なモノグラムにも捉えられる、想像力を掻き立てる趣深いデザインです。<br><br>約8.5号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8.5号<br>内径 約15.5mm<br><br>トップ 縦約10mm × 横約9mm<br>シャンク幅 約2.6mm<br><br>●重量<br>約 2.0g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10KT G.F. ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 515_0526<br>D69711_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-6">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-6">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-6">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-6" onclick="toggleCart(6)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-6" onclick="toggleCart(6)" >
           <span id="detail-bottom-cart-label-6">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -950,13 +998,14 @@ footer{
   <div class="detail-view" id="detail-7">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-7" onclick="toggleCart(7)">
+      <button class="detail-cart-btn" id="detail-cart-7" onclick="toggleCart(7)" >
         <span id="detail-cart-label-7">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.007</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「D」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 512_0526</p><p class="mng-no">D69411_802</p></div>
@@ -983,17 +1032,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>少し斜めに傾いた珍しいアシンメトリーフォルムのトップに、クラシカルな飾り文字で「D」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約9号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 9号<br>内径 約15.9mm<br><br>トップ 縦約8mm × 横約14mm<br>シャンク幅 約2.5mm<br><br>●重量<br>約 2.2g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F. ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 512_0526<br>D69411_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-7">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-7">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-7">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-7" onclick="toggleCart(7)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-7" onclick="toggleCart(7)" >
           <span id="detail-bottom-cart-label-7">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1003,13 +1052,14 @@ footer{
   <div class="detail-view" id="detail-8">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-8" onclick="toggleCart(8)">
+      <button class="detail-cart-btn" id="detail-cart-8" onclick="toggleCart(8)" >
         <span id="detail-cart-label-8">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.008</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「F」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO社</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 509_0526</p><p class="mng-no">D69111_802</p></div>
@@ -1036,17 +1086,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>少し斜めに傾いた珍しいアシンメトリーフォルムのトップに、クラシカルな飾り文字で「F」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約9号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 9号<br>内径 約16.0mm<br><br>トップ 縦約8mm × 横約14mm<br>シャンク幅 約2.5mm<br><br>●重量<br>約 2.1g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 509_0526<br>D69111_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-8">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-8">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-8">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-8" onclick="toggleCart(8)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-8" onclick="toggleCart(8)" >
           <span id="detail-bottom-cart-label-8">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1056,13 +1106,14 @@ footer{
   <div class="detail-view" id="detail-9">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-9" onclick="toggleCart(9)">
+      <button class="detail-cart-btn" id="detail-cart-9" onclick="toggleCart(9)" >
         <span id="detail-cart-label-9">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.009</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「H」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 511_0526</p><p class="mng-no">D69311_802</p></div>
@@ -1089,17 +1140,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>少し斜めに傾いた珍しいアシンメトリーフォルムのトップに、クラシカルな飾り文字で「H」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8号<br>内径 約15.7mm<br><br>トップ 縦約8mm × 横約14mm<br>シャンク幅 約2.5mm<br><br>●重量<br>約 2.2g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F. ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 511_0526<br>D69311_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-9">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-9">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-9">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-9" onclick="toggleCart(9)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-9" onclick="toggleCart(9)" >
           <span id="detail-bottom-cart-label-9">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1109,13 +1160,14 @@ footer{
   <div class="detail-view" id="detail-10">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-10" onclick="toggleCart(10)">
+      <button class="detail-cart-btn" id="detail-cart-10" onclick="toggleCart(10)" >
         <span id="detail-cart-label-10">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.010</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「K」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 510_0526</p><p class="mng-no">D69211_802</p></div>
@@ -1142,17 +1194,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>少し斜めに傾いた珍しいアシンメトリーフォルムのトップに、クラシカルな飾り文字で「K」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8号<br>内径 約15.7mm<br><br>トップ 縦約8mm × 横約14mm<br>シャンク幅 約2.5mm<br><br>●重量<br>約 2.1g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F. ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 510_0526<br>D69211_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-10">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-10">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-10">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-10" onclick="toggleCart(10)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-10" onclick="toggleCart(10)" >
           <span id="detail-bottom-cart-label-10">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1162,13 +1214,14 @@ footer{
   <div class="detail-view" id="detail-11">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-11" onclick="toggleCart(11)">
+      <button class="detail-cart-btn" id="detail-cart-11" onclick="toggleCart(11)" >
         <span id="detail-cart-label-11">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.011</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「L」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 513_0526</p><p class="mng-no">D69511_802</p></div>
@@ -1195,17 +1248,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>少し斜めに傾いた珍しいアシンメトリーフォルムのトップに、クラシカルな飾り文字で「L」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約9号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 9号<br>内径 約16.0mm<br><br>トップ 縦約8mm × 横約14mm<br>シャンク幅 約2.5mm<br><br>●重量<br>約 2.2g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F. ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 513_0526<br>D69511_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-11">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-11">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-11">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-11" onclick="toggleCart(11)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-11" onclick="toggleCart(11)" >
           <span id="detail-bottom-cart-label-11">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1215,13 +1268,14 @@ footer{
   <div class="detail-view" id="detail-12">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-12" onclick="toggleCart(12)">
+      <button class="detail-cart-btn" id="detail-cart-12" onclick="toggleCart(12)" >
         <span id="detail-cart-label-12">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.012</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 505_0526</p><p class="mng-no">D68221_812</p></div>
@@ -1248,17 +1302,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「O」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約6号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br>●サイズ<br>約 6号<br>内径 約14.7mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.5g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 505_0526<br>D68221_812</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-12">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;21,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;16,350</span>
+            <span class="price-label buyer-label" id="detail-price-label-12">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-12">&yen;16,350</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-12" onclick="toggleCart(12)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-12" onclick="toggleCart(12)" >
           <span id="detail-bottom-cart-label-12">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1268,13 +1322,14 @@ footer{
   <div class="detail-view" id="detail-13">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-13" onclick="toggleCart(13)">
+      <button class="detail-cart-btn" id="detail-cart-13" onclick="toggleCart(13)" >
         <span id="detail-cart-label-13">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.013</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 504_0526</p><p class="mng-no">D68121_812</p></div>
@@ -1301,17 +1356,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「O」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約6号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 6号<br>内径 約14.7mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.5g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 504_0526<br>D68121_812</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-13">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;21,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;16,350</span>
+            <span class="price-label buyer-label" id="detail-price-label-13">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-13">&yen;16,350</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-13" onclick="toggleCart(13)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-13" onclick="toggleCart(13)" >
           <span id="detail-bottom-cart-label-13">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1321,13 +1376,14 @@ footer{
   <div class="detail-view" id="detail-14">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-14" onclick="toggleCart(14)">
+      <button class="detail-cart-btn" id="detail-cart-14" onclick="toggleCart(14)" >
         <span id="detail-cart-label-14">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.014</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「O」 8.8号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 508_0526</p><p class="mng-no">D68521_812</p></div>
@@ -1354,17 +1410,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>オーバルフォルムのトップに、クラシカルな飾り文字で「O」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8.8号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8.8号<br>内径 約15.8mm<br><br>トップ 縦約11mm × 横約9mm<br>シャンク幅 約2.4mm<br><br>●重量<br>約 1.5g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 508_0526<br>D68521_812</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-14">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;21,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;16,350</span>
+            <span class="price-label buyer-label" id="detail-price-label-14">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-14">&yen;16,350</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-14" onclick="toggleCart(14)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-14" onclick="toggleCart(14)" >
           <span id="detail-bottom-cart-label-14">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1374,13 +1430,14 @@ footer{
   <div class="detail-view" id="detail-15">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-15" onclick="toggleCart(15)">
+      <button class="detail-cart-btn" id="detail-cart-15" onclick="toggleCart(15)" >
         <span id="detail-cart-label-15">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.015</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 507_0526</p><p class="mng-no">D68421_812</p></div>
@@ -1407,17 +1464,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「P」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8.5号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8.5号<br>内径 約15.4mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.4g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10K G.F.<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 507_0526<br>D68421_812</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-15">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;21,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;16,350</span>
+            <span class="price-label buyer-label" id="detail-price-label-15">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-15">&yen;16,350</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-15" onclick="toggleCart(15)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-15" onclick="toggleCart(15)" >
           <span id="detail-bottom-cart-label-15">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1427,13 +1484,14 @@ footer{
   <div class="detail-view" id="detail-16">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-16" onclick="toggleCart(16)">
+      <button class="detail-cart-btn" id="detail-cart-16" onclick="toggleCart(16)" >
         <span id="detail-cart-label-16">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.016</span>
+        
         <h2 class="card-title">ヴィンテージ 10KGF イニシャル 「R」フリーサイズ  シグネットリング ゴールドカラー 10金張り ESPO エスポジト</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 514_0526</p><p class="mng-no">D69611_802</p></div>
@@ -1460,17 +1518,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>クラシカルなオーバルフォルムのトップに、飾り文字で「R」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>オープンタイプのシャンク構造により、約13号をベースに±2号ほどのサイズ調整が可能。<br>素材には10KGF（10金張り）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>※サイズ調整時の注意点<br>調整後、リングの切れ目（重なり部分）をトップの裏側（印台の下）に寄せていただくと、着脱時の引っ掛かりを防ぎ、より快適にご着用いただけます。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 13号（±2号ほど調整可能）<br>トップ 縦約7mm × 横約12mm<br>シャンク幅 約2.0mm<br><br>●重量<br>約 1.8g<br><br>●ブランド<br>ESPO<br>エスポジト<br><br>●素材<br>10KGF（10金張り）<br><br>●刻印<br>10KT G.F. ESPO<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、10KGFの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 514_0526<br>D69611_802</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-16">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;20,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;15,600</span>
+            <span class="price-label buyer-label" id="detail-price-label-16">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-16">&yen;15,600</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-16" onclick="toggleCart(16)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-16" onclick="toggleCart(16)" >
           <span id="detail-bottom-cart-label-16">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1480,13 +1538,14 @@ footer{
   <div class="detail-view" id="detail-17">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-17" onclick="toggleCart(17)">
+      <button class="detail-cart-btn" id="detail-cart-17" onclick="toggleCart(17)" >
         <span id="detail-cart-label-17">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.017</span>
+        
         <h2 class="card-title">ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 506_0526</p><p class="mng-no">D68321_812</p></div>
@@ -1513,17 +1572,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>スクエアフォルムのトップに、クラシカルな飾り文字で「H」のイニシャルが刻まれたヴィンテージのシグネットリング。<br>約8.5号という小ぶりなサイズ感であり、ピンキーリング（小指用）として手元にさりげないアクセントと色気を添えるのに最適。<br>素材には18K HGE（18金厚メッキ）が採用されており、長年の時を経ても肌馴染みの良い落ち着いたゴールドの輝きを保っている。<br><br>華奢な佇まいの中にもヴィンテージならではのクラシカルな雰囲気を纏う、大人のための上品なデイリーピース。<br><br><br>●サイズ<br>約 8.5号<br>内径 約15.5mm<br><br>トップ 縦約6mm × 横約16mm<br>シャンク幅 約2.2mm<br><br>●重量<br>約 1.4g<br><br>●ブランド<br>Uncas Manufacturing Company<br>アンカス社<br><br>●素材<br>18K HGE（18金厚メッキ）<br><br>●刻印<br>18KT HGE<br>メーカーマーク<br><br>【コンディション】<br>長年の着用に伴う小傷や金属のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>文字の潰れもなく、18K HGEの美しい輝きも保たれており、これからも日常使いの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 506_0526<br>D68321_812</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-17">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;21,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;16,350</span>
+            <span class="price-label buyer-label" id="detail-price-label-17">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-17">&yen;16,350</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-17" onclick="toggleCart(17)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-17" onclick="toggleCart(17)" >
           <span id="detail-bottom-cart-label-17">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1533,13 +1592,14 @@ footer{
   <div class="detail-view" id="detail-18">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-18" onclick="toggleCart(18)">
+      <button class="detail-cart-btn" id="detail-cart-18" onclick="toggleCart(18)" >
         <span id="detail-cart-label-18">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.018</span>
+        
         <h2 class="card-title">ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 901_0527</p><p class="mng-no">D68949_851</p></div>
@@ -1566,17 +1626,17 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>世界的な銀の産地として名高いメキシコにて製造された、ヴィンテージのバングルブレスレット。<br>表面には細やかな彫金のようなパターンが施されており、メキシカンジュエリー特有のプリミティブな力強さと繊細さが同居する洗練された意匠。<br><br>素材にはアルパカシルバーを採用。<br>スターリングシルバーとは一味違う、少し黄みがかったようなくすんだ銀色がヴィンテージの渋い色気を醸し出す。<br>内周約20.8cmとややゆとりのあるサイズ感で、単体使いはもちろん、他のブレスレットとのレイヤードでも手元に圧倒的な存在感を宿す極上ピース。<br><br>●サイズ<br>内周 約20.8cm<br>外径 約70.3mm / 内径 約65.9mm<br>バンド幅 約5.2mm<br><br>●重量<br>約 12.7g<br><br>●ブランド<br>メキシカンジュエリー<br><br>●素材<br>アルパカシルバー<br>ニッケル合金<br><br>●刻印<br>MEXICO<br>ALPACA<br><br>【コンディション】<br>長年の着用に伴う小傷やアルパカシルバー特有のくすみは見受けられるが、ヴィンテージの風格を底上げする素晴らしいエイジング。<br>バングルとしての致命的な歪みやダメージはなく、これからも日常使いのタフな相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。全額返金させていただきます。<br>※撮影小物は付属対象外となります。<br><br>●管理番号 901_0527<br>D68949_851</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-18">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;15,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;11,850</span>
+            <span class="price-label buyer-label" id="detail-price-label-18">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-18">&yen;11,850</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-18" onclick="toggleCart(18)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-18" onclick="toggleCart(18)" >
           <span id="detail-bottom-cart-label-18">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
@@ -1586,13 +1646,14 @@ footer{
   <div class="detail-view" id="detail-19">
     <div class="detail-top-bar">
       <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
-      <button class="detail-cart-btn" id="detail-cart-19" onclick="toggleCart(19)">
+      <button class="detail-cart-btn" id="detail-cart-19" onclick="toggleCart(19)" >
         <span id="detail-cart-label-19">&#9744; リストに追加</span>
       </button>
     </div>
     <div class="detail-inner">
       <div class="detail-head">
         <span class="card-num">ITEM No.019</span>
+        
         <h2 class="card-title">英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド</h2>
         <div class="mng-no-block">
             <div class="mng-no-wrap"><p class="mng-no">●管理番号 498_0524</p><p class="mng-no">D65652_895</p></div>
@@ -1619,18 +1680,52 @@ footer{
           <p class="desc-text">#yukiアクセサリー<br><br>100年以上の時を生き抜いた正真正銘のアンティークピース。<br>英国バーミンガムで1916年に製造された、クラシカルな9Kゴールドのシグネットリング。<br><br>一切の装飾を削ぎ落としたソリッドな印台デザインが、洗練された大人の色気を指元に演出する。<br>リング内側には厳格な基準をクリアした証であるホールマークが深く刻み込まれており、金無垢特有の力強い輝きと歴史の重みを併せ持つ。スタイルを問わず日常使いできる極上の相棒。<br><br>●サイズ<br>約 12号<br>内径 約16.7mm<br><br>トップ 縦約10mm × 横約11mm<br>シャンク幅 約2.5mm<br><br>●重量<br>約 2.4g<br><br>●ブランド<br>W&J.S<br><br>●素材<br>9Kイエローゴールド（375）<br><br>●刻印<br>W&J.S<br>9<br>375<br>錨マーク<br><br><br>【コンディション】<br>100年以上前のアンティークゆえに長年の着用に伴う小傷は見受けられるが、歴史を刻む「タフな味」としてリングの風格を底上げする素晴らしいエイジング。<br>内側のホールマークも100年前の物とは思えないほど鮮明に残っており、これからも一生モノの相棒として長く愛用できる極上のコンディション。<br><br>【安心保証】<br>安心してご購入いただけるよう、商品に不備がございましたら到着から5日以内にご連絡ください。<br>全額返金させていただきます。<br>※撮影用小物は付属対象外となります。<br><br>●管理番号 498_0524<br>D65652_895</p>
         </div>
         
-        <div class="price-block">
+        <div class="price-block" id="detail-price-block-19">
           <div class="retail-row">
             <span class="price-label">小売価格</span>
             <span class="retail-value">&yen;59,800</span>
           </div>
           <div class="buyer-row">
-            <span class="price-label buyer-label">SPECIAL PRICE</span>
-            <span class="price-value">&yen;44,850</span>
+            <span class="price-label buyer-label" id="detail-price-label-19">SPECIAL PRICE</span>
+            <span class="price-value" id="detail-price-value-19">&yen;44,850</span>
           </div>
         </div>
-        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-19" onclick="toggleCart(19)">
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-19" onclick="toggleCart(19)" >
           <span id="detail-bottom-cart-label-19">&#9744; リストに追加</span>
+        </button>
+        <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      </div>
+    </div>
+  </div>
+  <div class="detail-view" id="detail-20">
+    <div class="detail-top-bar">
+      <button class="back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
+      <button class="detail-cart-btn" id="detail-cart-20" onclick="toggleCart(20)" >
+        <span id="detail-cart-label-20">&#9744; リストに追加</span>
+      </button>
+    </div>
+    <div class="detail-inner">
+      <div class="detail-head">
+        <span class="card-num">ITEM No.020</span>
+        
+        <h2 class="card-title">dummy_item</h2>
+        
+      </div>
+      <div class="no-img">画像なし</div>
+      <div class="card-body">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:.5rem;">
+            <p class="label" style="margin-bottom:0;">DESCRIPTION</p>
+            <button class="save-img-btn" onclick="downloadAllImages(20)">全画像を保存</button>
+          </div>
+          <p class="desc-text">テスト商品<br>1000</p>
+        </div>
+        
+        <div class="price-block" id="detail-price-block-20">
+          <span class="price-value" id="detail-price-value-20">価格応談</span>
+        </div>
+        <button class="detail-bottom-cart-btn" id="detail-bottom-cart-20" onclick="toggleCart(20)" >
+          <span id="detail-bottom-cart-label-20">&#9744; リストに追加</span>
         </button>
         <button class="detail-bottom-back-btn" onclick="showIndex()">&#8592; 一覧に戻る</button>
       </div>
@@ -1672,28 +1767,35 @@ footer{
   </div>
 </div>
 
+<div id="cond-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#c9a84c; color:#111; text-align:center; padding:0.4rem; font-size:0.75rem; font-weight:bold; z-index:150; letter-spacing:0.05em;">
+  全品10%オフ（最低3品以上お選びください）
+</div>
+
 <script>
+let loginPw = '';
 const PW    = 'ringoyuki0930';
+const SPECIAL_PW = 'ringoyuki0606';
 const ITEMS = [
-  {idx:1,title:'14KGF 14金張り 14号 3連 スタッキングリング ヴィンテージ デッドストック ゴールドカラー 重ね付け',retail:23800,price:17850,mng:'●管理番号 500_0526\nD66951_832'},
-  {idx:2,title:'14KGF 14金張り 17号 幾何学模様 ヴィンテージ バンドリング デッドストック ゴールドカラー シャープ',retail:21800,price:16350,mng:'●管理番号 502_0526\nD67189_812'},
-  {idx:3,title:'イタリア製 10K ゴールド ミラーリンク チェーン ブレスレット 17.3cm 10金 BSI 金無垢',retail:24800,price:18600,mng:'●管理番号 903_0527\nD70001_842'},
-  {idx:4,title:'イタリア製 10K ゴールド ロープチェーン ブレスレット 約17cm 10金 ITALY 金無垢',retail:31800,price:23850,mng:'●管理番号 902_0527\nD69961_813'},
-  {idx:5,title:'イタリア製 ヴィンテージ 14K ゴールド 極細 スネークチェーン ブレスレット 約17.5cm 14金 ITALY',retail:26800,price:20100,mng:'●管理番号 900_0527\nD67401_862'},
-  {idx:6,title:'ヴィンテージ 10KGF イニシャル 「B」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 515_0526\nD69711_802'},
-  {idx:7,title:'ヴィンテージ 10KGF イニシャル 「D」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 512_0526\nD69411_802'},
-  {idx:8,title:'ヴィンテージ 10KGF イニシャル 「F」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO社',retail:20800,price:15600,mng:'●管理番号 509_0526\nD69111_802'},
-  {idx:9,title:'ヴィンテージ 10KGF イニシャル 「H」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 511_0526\nD69311_802'},
-  {idx:10,title:'ヴィンテージ 10KGF イニシャル 「K」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 510_0526\nD69211_802'},
-  {idx:11,title:'ヴィンテージ 10KGF イニシャル 「L」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 513_0526\nD69511_802'},
-  {idx:12,title:'ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 505_0526\nD68221_812'},
-  {idx:13,title:'ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース',retail:21800,price:16350,mng:'●管理番号 504_0526\nD68121_812'},
-  {idx:14,title:'ヴィンテージ 10KGF イニシャル 「O」 8.8号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 508_0526\nD68521_812'},
-  {idx:15,title:'ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 507_0526\nD68421_812'},
-  {idx:16,title:'ヴィンテージ 10KGF イニシャル 「R」フリーサイズ  シグネットリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 514_0526\nD69611_802'},
-  {idx:17,title:'ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社',retail:21800,price:16350,mng:'●管理番号 506_0526\nD68321_812'},
-  {idx:18,title:'ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー',retail:15800,price:11850,mng:'●管理番号 901_0527\nD68949_851'},
-  {idx:19,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895'}
+  {idx:1,title:'14KGF 14金張り 14号 3連 スタッキングリング ヴィンテージ デッドストック ゴールドカラー 重ね付け',retail:23800,price:17850,mng:'●管理番号 500_0526\nD66951_832',tab:'private'},
+  {idx:2,title:'14KGF 14金張り 17号 幾何学模様 ヴィンテージ バンドリング デッドストック ゴールドカラー シャープ',retail:21800,price:16350,mng:'●管理番号 502_0526\nD67189_812',tab:'private'},
+  {idx:3,title:'イタリア製 10K ゴールド ミラーリンク チェーン ブレスレット 17.3cm 10金 BSI 金無垢',retail:24800,price:18600,mng:'●管理番号 903_0527\nD70001_842',tab:'private'},
+  {idx:4,title:'イタリア製 10K ゴールド ロープチェーン ブレスレット 約17cm 10金 ITALY 金無垢',retail:31800,price:23850,mng:'●管理番号 902_0527\nD69961_813',tab:'private'},
+  {idx:5,title:'イタリア製 ヴィンテージ 14K ゴールド 極細 スネークチェーン ブレスレット 約17.5cm 14金 ITALY',retail:26800,price:20100,mng:'●管理番号 900_0527\nD67401_862',tab:'private'},
+  {idx:6,title:'ヴィンテージ 10KGF イニシャル 「B」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 515_0526\nD69711_802',tab:'private'},
+  {idx:7,title:'ヴィンテージ 10KGF イニシャル 「D」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 512_0526\nD69411_802',tab:'private'},
+  {idx:8,title:'ヴィンテージ 10KGF イニシャル 「F」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO社',retail:20800,price:15600,mng:'●管理番号 509_0526\nD69111_802',tab:'private'},
+  {idx:9,title:'ヴィンテージ 10KGF イニシャル 「H」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 511_0526\nD69311_802',tab:'private'},
+  {idx:10,title:'ヴィンテージ 10KGF イニシャル 「K」 8号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 510_0526\nD69211_802',tab:'private'},
+  {idx:11,title:'ヴィンテージ 10KGF イニシャル 「L」 9号 シグネットリング ピンキーリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 513_0526\nD69511_802',tab:'private'},
+  {idx:12,title:'ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 505_0526\nD68221_812',tab:'private'},
+  {idx:13,title:'ヴィンテージ 10KGF イニシャル 「O」 6号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社 メンズ レディース',retail:21800,price:16350,mng:'●管理番号 504_0526\nD68121_812',tab:'private'},
+  {idx:14,title:'ヴィンテージ 10KGF イニシャル 「O」 8.8号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 508_0526\nD68521_812',tab:'private'},
+  {idx:15,title:'ヴィンテージ 10KGF イニシャル 「P」 8.5号 シグネットリング ピンキーリング ゴールドカラー 10金張り アンカス社',retail:21800,price:16350,mng:'●管理番号 507_0526\nD68421_812',tab:'private'},
+  {idx:16,title:'ヴィンテージ 10KGF イニシャル 「R」フリーサイズ  シグネットリング ゴールドカラー 10金張り ESPO エスポジト',retail:20800,price:15600,mng:'●管理番号 514_0526\nD69611_802',tab:'private'},
+  {idx:17,title:'ヴィンテージ 18K HGE イニシャル 「H」 8.5号 シグネットリング ピンキーリング ゴールドカラー 18金厚メッキ アンカス社',retail:21800,price:16350,mng:'●管理番号 506_0526\nD68321_812',tab:'private'},
+  {idx:18,title:'ヴィンテージ メキシコ製 アルパカ シルバー バングル ブレスレット 20.8cm MEXICO ALPACA メキシカンジュエリー',retail:15800,price:11850,mng:'●管理番号 901_0527\nD68949_851',tab:'private'},
+  {idx:19,title:'英国アンティーク 1916年 W&J.S 9K シグネットリング 約12号 バーミンガム ホールマーク 印台 金無垢 9金 ゴールド',retail:59800,price:44850,mng:'●管理番号 498_0524\nD65652_895',tab:'private'},
+  {idx:20,title:'dummy_item',retail:0,price:0,mng:'',tab:'shops'}
 ];
 const SHOW_URL_LINK = false;
 const CAT_KEYS = {
@@ -1733,8 +1835,6 @@ function copyMng(text, btn) {
 }
 
 function getCategory(title, mng) {
-  // 1. 管理番号による判定 (優先)
-  // 例: 507_0526 から 507 を抽出
   const mngMatch = mng.match(/(?:^|\D)(\d{3,4})_\d+/);
   if (mngMatch) {
     const num = parseInt(mngMatch[1], 10);
@@ -1742,7 +1842,6 @@ function getCategory(title, mng) {
     if (num >= 2000 && num <= 2999) return '時計';
   }
 
-  // 2. キーワードによる判定 (管理番号で判定できなかった場合)
   const text = (title + " " + mng).toLowerCase();
   const cats = ['リング', 'ブレスレット', '時計'];
   for (let c of cats) {
@@ -1755,16 +1854,40 @@ function getCategory(title, mng) {
   return 'その他';
 }
 
-function filterCat(cat) {
-  document.querySelectorAll('.cat-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim() === cat);
+let currentTab = 'private';
+function switchTab(tabId) {
+  currentTab = tabId;
+  document.querySelectorAll('.top-tab-btn').forEach(b => {
+    const onclickAttr = b.getAttribute('onclick') || '';
+    b.classList.toggle('active', onclickAttr.includes("'" + tabId + "'"));
   });
+  document.querySelectorAll('.category-bar').forEach(bar => {
+    bar.classList.toggle('active', bar.id === 'cat-bar-' + tabId);
+  });
+  
+  filterCat('すべて', tabId);
+}
+
+function filterCat(cat, tabId) {
+  if (!tabId) tabId = currentTab;
+  const bar = document.getElementById('cat-bar-' + tabId);
+  if(bar) {
+    bar.querySelectorAll('.cat-btn').forEach(b => {
+      b.classList.toggle('active', b.textContent.trim() === cat);
+    });
+  }
+  
   ITEMS.forEach(item => {
     const itemCat = getCategory(item.title, item.mng);
     const row = document.getElementById('row-' + item.idx);
     if (row) {
-      if (cat === 'すべて' || itemCat === cat) {
-        row.style.display = 'flex';
+      const isCorrectTab = row.classList.contains('tab-' + tabId);
+      if (isCorrectTab) {
+        if (cat === 'すべて' || itemCat === cat) {
+          row.style.display = 'flex';
+        } else {
+          row.style.display = 'none';
+        }
       } else {
         row.style.display = 'none';
       }
@@ -1775,10 +1898,17 @@ function filterCat(cat) {
 document.getElementById('pw-input').addEventListener('input', function() {
   this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
 });
+
 function checkPw() {
-  if (document.getElementById('pw-input').value === PW) {
+  const inputPw = document.getElementById('pw-input').value;
+  if (inputPw === PW || inputPw === SPECIAL_PW) {
+    loginPw = inputPw;
     document.getElementById('pw-screen').style.display = 'none';
     document.getElementById('app').style.display = 'block';
+    
+    applyPasswordSettings();
+    switchTab('private');
+    
     if(window.location.hash.startsWith('#item-')) {
       const id = parseInt(window.location.hash.replace('#item-',''));
       if(!isNaN(id)) showDetail(id);
@@ -1789,9 +1919,63 @@ function checkPw() {
     document.getElementById('pw-input').focus();
   }
 }
+
 document.getElementById('pw-input').addEventListener('keydown', e => {
   if (e.key === 'Enter') checkPw();
 });
+
+function applyPasswordSettings() {
+  const isNormal = (loginPw === PW);
+  
+  // お買い上げ実績タブ表示制御
+  const soldTabBtn = document.getElementById('tab-btn-sold');
+  if (soldTabBtn) {
+    soldTabBtn.style.display = isNormal ? 'block' : 'none';
+  }
+  
+  // 条件メッセージバナー表示制御 (特別パスワードのみ)
+  const condBanner = document.getElementById('cond-banner');
+  if (condBanner) {
+    condBanner.style.display = !isNormal ? 'block' : 'none';
+    
+    // バナーがあるため、app の padding-bottom を調整
+    const appEl = document.getElementById('app');
+    if (appEl) {
+      appEl.style.paddingBottom = !isNormal ? '120px' : '90px';
+    }
+  }
+  
+  // 特別割引率の計算
+  const specialDiscount = 0.9;
+  ITEMS.forEach(item => {
+    if (!isNormal && item.retail) {
+      item.price = Math.floor(item.retail * specialDiscount);
+    }
+  });
+
+  updatePriceDisplayOnUI(isNormal);
+  updateCartUI();
+}
+
+function updatePriceDisplayOnUI(isNormal) {
+  const labelNormal = "SPECIAL PRICE";
+  const labelText = isNormal ? labelNormal : "特別価格";
+
+  ITEMS.forEach(item => {
+    const rowPrice = document.getElementById('row-price-' + item.idx);
+    if (rowPrice) {
+      rowPrice.innerHTML = item.price ? '&yen;' + item.price.toLocaleString() : '価格応談';
+    }
+    const detailLabel = document.getElementById('detail-price-label-' + item.idx);
+    if (detailLabel) {
+      detailLabel.textContent = labelText;
+    }
+    const detailValue = document.getElementById('detail-price-value-' + item.idx);
+    if (detailValue) {
+      detailValue.innerHTML = item.price ? '&yen;' + item.price.toLocaleString() : '価格応談';
+    }
+  });
+}
 
 function showDetail(idx) {
   window.history.replaceState(null, null, '#item-' + idx);
@@ -1844,6 +2028,7 @@ S[16]={cur:0,total:12};
 S[17]={cur:0,total:12};
 S[18]={cur:0,total:12};
 S[19]={cur:0,total:13};
+S[20]={cur:0,total:0};
 
 function slideNav(pid, dir) {
   if (!S[pid]) return;
@@ -1871,6 +2056,9 @@ function initTouch(pid) {
 
 const cart = new Set();
 function toggleCart(idx) {
+  const item = ITEMS.find(x => x.idx === idx);
+  if (item && item.tab === 'sold') return; // SOLD品はカートに入れられない
+  
   cart.has(idx) ? cart.delete(idx) : cart.add(idx);
   updateCartUI();
 }
@@ -1931,10 +2119,30 @@ function renderModalItems() {
   });
   document.getElementById('modal-items').innerHTML = html;
   
+  // 送料計算 (特別パスワードのみ適用)
+  let shippingHtml = '';
+  let finalTotal = total;
+  const isNormal = (loginPw === PW);
+  if (!isNormal && cart.size > 0) {
+    if (cart.size < 3) {
+      shippingHtml = `<div style="font-size:0.8rem;color:#aaa;text-align:right;margin-bottom:0.3rem;">送料: ¥1,000</div>`;
+      finalTotal += 1000;
+    } else {
+      shippingHtml = `<div style="font-size:0.8rem;color:#c9a84c;text-align:right;margin-bottom:0.3rem;">送料: 無料 (3点以上)</div>`;
+    }
+  }
+
   if (retail_total > 0) {
-    document.getElementById('modal-total').innerHTML = `<div style="text-align:right;line-height:1.2;"><div style="font-size:0.9rem;color:#888;text-decoration:line-through;margin-bottom:0.1rem;letter-spacing:0.04em;">¥${retail_total.toLocaleString()}</div><div>¥${total.toLocaleString()}</div></div>`;
+    document.getElementById('modal-total').innerHTML = `
+      ${shippingHtml}
+      <div style="text-align:right;line-height:1.2;">
+        <div style="font-size:0.9rem;color:#888;text-decoration:line-through;margin-bottom:0.1rem;letter-spacing:0.04em;">¥${retail_total.toLocaleString()}</div>
+        <div>¥${finalTotal.toLocaleString()}</div>
+      </div>`;
   } else {
-    document.getElementById('modal-total').textContent = '¥' + total.toLocaleString();
+    document.getElementById('modal-total').innerHTML = `
+      ${shippingHtml}
+      <div style="text-align:right;">¥${finalTotal.toLocaleString()}</div>`;
   }
 }
 function removeFromCart(idx) {
@@ -1968,19 +2176,42 @@ function copyEstimate() {
       });
     }
     
+    const isNormal = (loginPw === PW);
+    const labelCopy = isNormal ? "SPECIAL PRICE" : "特別価格";
     if (item.retail) {
       text += `  小売価格: ¥${retail}\n`;
-      text += `  SPECIAL PRICE: ¥${price}\n`;
+      text += `  ${labelCopy}: ¥${price}\n`;
     } else {
       text += `  価格: ¥${price}\n`;
     }
     text += `＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿\n`;
   });
+
+  const isNormal = (loginPw === PW);
+  let shippingText = '';
+  let finalTotal = total;
+  if (!isNormal) {
+    if (cart.size < 3) {
+      shippingText = `送料: ¥1,000\n`;
+      finalTotal += 1000;
+    } else {
+      shippingText = `送料: 無料 (3点以上)\n`;
+    }
+  }
+
+  const labelText = isNormal ? "SPECIAL PRICE" : "特別価格";
+
   if (retail_total > 0) {
     text += `\n合計 小売価格: ¥${retail_total.toLocaleString()}\n`;
-    text += `⇒ (SPECIAL PRICE): ¥${total.toLocaleString()}（${cart.size}点）`;
+    if (shippingText) {
+      text += shippingText;
+    }
+    text += `⇒ (${labelText}): ¥${finalTotal.toLocaleString()}（${cart.size}点）`;
   } else {
-    text += `\n合計(SPECIAL PRICE): ¥${total.toLocaleString()}（${cart.size}点）`;
+    if (shippingText) {
+      text += `\n` + shippingText;
+    }
+    text += `\n合計(${labelText}): ¥${finalTotal.toLocaleString()}（${cart.size}点）`;
   }
   const done = () => {
     const el=document.getElementById('copy-done');
