@@ -1768,7 +1768,7 @@ footer{
 </div>
 
 <div id="cond-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; background:#c9a84c; color:#111; text-align:center; padding:0.4rem; font-size:0.75rem; font-weight:bold; z-index:150; letter-spacing:0.05em;">
-  全品10%オフ（最低3品以上お選びください）
+  全品10%オフ
 </div>
 
 <script>
@@ -2119,18 +2119,9 @@ function renderModalItems() {
   });
   document.getElementById('modal-items').innerHTML = html;
   
-  // 送料計算 (特別パスワードのみ適用)
+  // 送料計算 (不要になったため無効化)
   let shippingHtml = '';
   let finalTotal = total;
-  const isNormal = (loginPw === PW);
-  if (!isNormal && cart.size > 0) {
-    if (cart.size < 3) {
-      shippingHtml = `<div style="font-size:0.8rem;color:#aaa;text-align:right;margin-bottom:0.3rem;">送料: ¥1,000</div>`;
-      finalTotal += 1000;
-    } else {
-      shippingHtml = `<div style="font-size:0.8rem;color:#c9a84c;text-align:right;margin-bottom:0.3rem;">送料: 無料 (3点以上)</div>`;
-    }
-  }
 
   if (retail_total > 0) {
     document.getElementById('modal-total').innerHTML = `
@@ -2190,14 +2181,6 @@ function copyEstimate() {
   const isNormal = (loginPw === PW);
   let shippingText = '';
   let finalTotal = total;
-  if (!isNormal) {
-    if (cart.size < 3) {
-      shippingText = `送料: ¥1,000\n`;
-      finalTotal += 1000;
-    } else {
-      shippingText = `送料: 無料 (3点以上)\n`;
-    }
-  }
 
   const labelText = isNormal ? "SPECIAL PRICE" : "特別価格";
 
