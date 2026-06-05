@@ -365,7 +365,7 @@ footer{
     <button class="top-tab-btn" onclick="switchTab('shops')">SHOPS販売中</button>
   </div>
   <div id="index-view">
-    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'private')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'shops')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div><div id="cat-bar-sold" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'sold')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'sold')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'sold')">ブレスレット</button><button class="cat-btn" onclick="filterCat('時計', 'sold')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'sold')">その他</button></div>
+    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット・ネックレス', 'private')">ブレスレット・ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット・ネックレス', 'shops')">ブレスレット・ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div><div id="cat-bar-sold" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'sold')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'sold')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット・ネックレス', 'sold')">ブレスレット・ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'sold')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'sold')">その他</button></div>
     <div class="item-list">
       
     <div class="item-row tab-private" id="row-1">
@@ -1813,7 +1813,7 @@ const ITEMS = [
 const SHOW_URL_LINK = false;
 const CAT_KEYS = {
   'リング': 'リング, 指輪, ring, カレッジ, シグネット',
-  'ブレスレット': 'ブレス, バングル, bracelet, bangle',
+  'ブレスレット': '',
   '時計': '時計, ウォッチ, watch, セイコー, seiko, オメガ, ロレックス, カルティエ'
 };
 
@@ -1851,12 +1851,12 @@ function getCategory(title, mng) {
   const mngMatch = mng.match(/(?:^|\D)(\d{3,4})_\d+/);
   if (mngMatch) {
     const num = parseInt(mngMatch[1], 10);
-    if (num >= 900 && num <= 999) return 'ブレスレット';
+    if (num >= 900 && num <= 999) return 'ブレスレット・ネックレス';
     if (num >= 2000 && num <= 2999) return '時計';
   }
 
   const text = (title + " " + mng).toLowerCase();
-  const cats = ['リング', 'ブレスレット', '時計'];
+  const cats = ['リング', 'ブレスレット・ネックレス', '時計'];
   for (let c of cats) {
     if (!CAT_KEYS[c]) continue;
     const words = CAT_KEYS[c].split(',').map(w => w.trim().toLowerCase()).filter(w => w);
