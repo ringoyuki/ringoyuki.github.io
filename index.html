@@ -365,7 +365,7 @@ footer{
     <button class="top-tab-btn" onclick="switchTab('shops')">SHOPS販売中</button>
   </div>
   <div id="index-view">
-    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット・ネックレス', 'private')">ブレスレット・ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット・ネックレス', 'shops')">ブレスレット・ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div><div id="cat-bar-sold" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'sold')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'sold')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット・ネックレス', 'sold')">ブレスレット・ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'sold')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'sold')">その他</button></div>
+    <div id="cat-bar-private" class="category-bar active"><button class="cat-btn active" onclick="filterCat('すべて', 'private')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'private')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'private')">ブレスレット</button><button class="cat-btn" onclick="filterCat('ネックレス', 'private')">ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'private')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'private')">その他</button></div><div id="cat-bar-shops" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'shops')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'shops')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'shops')">ブレスレット</button><button class="cat-btn" onclick="filterCat('ネックレス', 'shops')">ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'shops')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'shops')">その他</button></div><div id="cat-bar-sold" class="category-bar "><button class="cat-btn active" onclick="filterCat('すべて', 'sold')">すべて</button><button class="cat-btn" onclick="filterCat('リング', 'sold')">リング</button><button class="cat-btn" onclick="filterCat('ブレスレット', 'sold')">ブレスレット</button><button class="cat-btn" onclick="filterCat('ネックレス', 'sold')">ネックレス</button><button class="cat-btn" onclick="filterCat('時計', 'sold')">時計</button><button class="cat-btn" onclick="filterCat('その他', 'sold')">その他</button></div>
     
 <div id="date-filter-bar" class="date-filter-bar" style="display:none; padding:0.5rem 1.4rem; background:#141414; border-bottom:1px solid #1a1a1a;">
   <select id="date-select" onchange="filterDate(this.value)" style="width:100%; padding:0.6rem; background:#0d0d0d; color:#c9a84c; border:1px solid #333; border-radius:4px; font-family:'Noto Serif JP',serif;">
@@ -7272,15 +7272,18 @@ function copyMng(text, btn) {
 }
 
 function getCategory(title, mng) {
+  // 共通の管理番号帯では区別できないため、商品名の種類を先に確認する。
+  const productTitle = title.toLowerCase();
+  if (/ブレス|バングル|bracelet|bangle/.test(productTitle)) return 'ブレスレット';
+  if (/ネックレス|ペンダント|necklace|pendant/.test(productTitle)) return 'ネックレス';
   const mngMatch = mng.match(/(?:^|\D)(\d{3,4})_\d+/);
   if (mngMatch) {
     const num = parseInt(mngMatch[1], 10);
-    if (num >= 900 && num <= 999) return 'ブレスレット・ネックレス';
     if (num >= 2000 && num <= 2999) return '時計';
   }
 
   const text = (title + " " + mng).toLowerCase();
-  const cats = ['リング', 'ブレスレット・ネックレス', '時計'];
+  const cats = ['リング', '時計'];
   for (let c of cats) {
     if (!CAT_KEYS[c]) continue;
     const words = CAT_KEYS[c].split(',').map(w => w.trim().toLowerCase()).filter(w => w);
